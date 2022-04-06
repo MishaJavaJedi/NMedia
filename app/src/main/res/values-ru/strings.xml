@@ -2,4 +2,13 @@
 <resources>
     <string name="app_name">НМедиа</string>
     <string name="logo_name">НМедиа</string>
+    <string name="avatar_description">Описание аватара</string>
+    <string name="postAuthor">Нетология. Университет интернет-профессий</string>
+    <string name="date">6 апреля в 23:13</string>
+    <string name="URL">https://netology.ru/</string>
+    <string name="loremIpsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In iaculis pharetra nunc consequat fermentum. Nam pretium aliquet erat sit amet ullamcorper. Mauris semper neque a urna rhoncus, pulvinar rhoncus sem interdum. Nullam nibh magna, fringilla eget velit et, laoreet viverra ex. Morbi tincidunt mauris non accumsan rutrum. Quisque sagittis iaculis rutrum. Aliquam in eros in massa scelerisque tincidunt eu in ligula. Ut tristique mi nec nisl pulvinar, eleifend tincidunt lacus hendrerit. Sed interdum malesuada nulla, non rutrum velit imperdiet vel. Donec quam ex, sagittis quis vestibulum sit amet, tincidunt quis augue.</string>
+    <string name="repostButton">Кнопка Репоста</string>
+    <string name="options">Опции</string>
+    <string name="likebutton">Кнопка Лайка</string>
+    <string name="viewcountpicture">Количество Просмотров</string>
 </resources>
