@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
             firstNumber = likesToString.substring(0, 1)
             secondNumber = likesToString.substring(1, 2)
             return firstNumber + "," + secondNumber + "K"
-        } else ""
+        } else ""//
     }
 
     private fun ActivityMainBinding.render(post: Post) {
