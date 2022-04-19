@@ -5,39 +5,32 @@ import ru.netology.nmedia.data.Post
 import ru.netology.nmedia.repository.PostRepository
 
 class InMemoryPostRepository : PostRepository {
+
+    private val posts get() = checkNotNull(data.value) { "Data value should not be null" }
+
     override val data = MutableLiveData(
-        Post(
-            id = 0L,
-            author = "Author name",
-            content = "Lorem Ipsum",
-            published = "10.04.2022",
-            share = 1299,
-            likes = 1999
-        )
+        List(1000) { index ->
+            Post(
+                id = index + 1L,
+                author = "Netology",
+                content = "Lorem Ipsum $index",
+                published = "10.04.2022",
+                share = 997,
+                likes = 999
+            )
+        }
     )
 
-    override fun like() {
-        val currentPost = checkNotNull(data.value) {
-            "Data value should not be null"
-        }
-        val likedPost = currentPost.copy(
-            likes = currentPost.likes,
-            likedByMe = !currentPost.likedByMe
-        )
-        if (likedPost.likedByMe) likedPost.likes++ else likedPost.likes--
-
-        data.value = likedPost
+    override fun like(postid: Long) {
+        data.value = posts.map {
+            if (it.id == postid) it.copy(likedByMe = !it.likedByMe)
+            else it
+        }.map { if (it.id == postid && it.likedByMe) it.copy(likes = it.likes + 1) else it }
+            .map { if (it.id == postid && !it.likedByMe) it.copy(likes = it.likes - 1) else it }
     }
 
-    override fun share() {
-
-        val post = checkNotNull(data.value) {
-            "Data value should not be null"
-        }
-        val sharedPost = post.copy(
-            share = post.share + 1
-        )
-        data.value = sharedPost
+    override fun share(postId: Long) {
+        data.value = posts.map { if (it.id == postId) it.copy(share = it.share + 1) else it }
     }
 
     fun converter(count: Int): String {
@@ -71,3 +64,4 @@ class InMemoryPostRepository : PostRepository {
         } else ""
     }
 }
+
