@@ -25,22 +25,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        val adapter = PostsAdapter(viewModel::onLikeClicked,viewModel::share)
+        val adapter = PostsAdapter(viewModel::onLikeClicked, viewModel::onShareClicked)
         binding.postRecyclerView.adapter = adapter
         viewModel.data.observe(this) { posts ->
             adapter.submitList(posts)
         }
     }
-
-
-
-//        authorName.text = post.author
-//        postDate.text = post.published
-//        text.text = post.content
-//        repostCount.text = toStringConverter(post.share)
-//        likesCount.text = toStringConverter(post.likes)
-//        likeButton.setImageResource(getLikeIconResId(post.likedByMe))
-    }
+}
 
 
 

@@ -13,7 +13,7 @@ import kotlin.properties.Delegates
 
 internal class PostsAdapter(
     private val onLikeClicked: (Post) -> Unit,
-    private val share:(Post) -> Unit
+    private val share: (Post) -> Unit
 
 ) : ListAdapter<Post, PostsAdapter.ViewHolder>(DiffCallback) {
 
@@ -55,7 +55,8 @@ internal class PostsAdapter(
 
     private object DiffCallback : DiffUtil.ItemCallback<Post>() {
 
-        override fun areItemsTheSame(oldItem: Post, newItem: Post): Boolean = oldItem.id == newItem.id
+        override fun areItemsTheSame(oldItem: Post, newItem: Post): Boolean =
+            oldItem.id == newItem.id
 
         override fun areContentsTheSame(oldItem: Post, newItem: Post): Boolean = oldItem == newItem
 
