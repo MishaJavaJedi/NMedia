@@ -11,4 +11,7 @@
     <string name="options">Опции</string>
     <string name="likebutton">Кнопка Лайка</string>
     <string name="viewcountpicture">Количество Просмотров</string>
+    <string name="remove">Удалить</string>
+    <string name="enter_text">Введите текст...</string>
+    <string name="menu_edit">Изменить</string>
 </resources>

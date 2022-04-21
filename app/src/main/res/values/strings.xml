@@ -10,4 +10,7 @@
     <string name="options">options</string>
     <string name="likebutton">likeButton</string>
     <string name="viewcountpicture">viewCountPicture</string>
+    <string name="remove">Remove</string>
+    <string name="enter_text">Enter text...</string>
+    <string name="menu_edit">Edit</string>
 </resources>

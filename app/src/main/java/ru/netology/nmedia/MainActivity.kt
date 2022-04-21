@@ -1,16 +1,11 @@
 package ru.netology.nmedia
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
-import ru.netology.nmedia.data.Post
-import ru.netology.nmedia.data.impl.InMemoryPostRepository
-import ru.netology.nmedia.data.impl.PostsAdapter
+import ru.netology.nmedia.adapter.PostsAdapter
 import ru.netology.nmedia.databinding.ActivityMainBinding
-import ru.netology.nmedia.databinding.PostBinding
-import ru.netology.nmedia.repository.PostRepository
+import ru.netology.nmedia.util.hideKeyboard
 import ru.netology.nmedia.viewModel.PostViewModel
 
 
@@ -25,10 +20,23 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        val adapter = PostsAdapter(viewModel::onLikeClicked, viewModel::onShareClicked)
-        binding.postRecyclerView.adapter = adapter
+        val adapter = PostsAdapter(viewModel)
+        binding.list.adapter = adapter
         viewModel.data.observe(this) { posts ->
             adapter.submitList(posts)
+        }
+
+        binding.save.setOnClickListener {
+            with(binding.content) {
+                val content = text.toString()
+                viewModel.onSaveButtonClicked(content)
+
+                clearFocus()
+                hideKeyboard()
+            }
+        }
+        viewModel.currentPost.observe(this){currentPost ->
+            binding.content.setText(currentPost?.content)
         }
     }
 }
