@@ -1,15 +1,22 @@
 package ru.netology.nmedia.adapter
 
+import android.text.Editable
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.PopupMenu
 import androidx.annotation.DrawableRes
+import androidx.core.view.get
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.R
 import ru.netology.nmedia.data.Post
 import ru.netology.nmedia.data.impl.InMemoryPostRepository
+import ru.netology.nmedia.databinding.ActivityMainBinding
+//
 import ru.netology.nmedia.databinding.PostBinding
 
 internal class PostsAdapter(
@@ -17,9 +24,12 @@ internal class PostsAdapter(
 
 ) : ListAdapter<Post, PostsAdapter.ViewHolder>(DiffCallback) {
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
         val inflater = LayoutInflater.from(parent.context)
         val binding = PostBinding.inflate(inflater, parent, false)
+
         return ViewHolder(binding, interactionListener)
     }
 
@@ -33,6 +43,7 @@ internal class PostsAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         private lateinit var post: Post
+
 
         private val popupMenu by lazy {
             PopupMenu(itemView.context, binding.options).apply {
@@ -53,11 +64,12 @@ internal class PostsAdapter(
             }
         }
 
-        init {
-            binding.likeButton.setOnClickListener {
-                listener.onLikeClicked(post)
-            }
-        }
+
+//        init {
+//            binding.likeButton.setOnClickListener {
+//                listener.onLikeClicked(post)
+//            }
+//        }
 
         fun bind(post: Post) {
             this.post = post
@@ -68,12 +80,13 @@ internal class PostsAdapter(
                 repostCount.text = toStringConverter(post.share)
                 likesCount.text = toStringConverter(post.likes)
 
-
                 repostButton.setOnClickListener { interactionListener.onShareClicked(post) }
                 likeButton.setOnClickListener { interactionListener.onLikeClicked(post) }
                 likeButton.setImageResource(getLikeIconResId(post.likedByMe))
 
-                options.setOnClickListener { popupMenu.show() }
+                options.setOnClickListener {
+                    popupMenu.show()
+                }
             }
         }
 

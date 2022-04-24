@@ -14,4 +14,5 @@
     <string name="remove">Удалить</string>
     <string name="enter_text">Введите текст...</string>
     <string name="menu_edit">Изменить</string>
+    <string name="edit_message">Изменить сообщение</string>
 </resources>

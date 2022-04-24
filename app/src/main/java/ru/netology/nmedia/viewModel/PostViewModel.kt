@@ -2,6 +2,7 @@ package ru.netology.nmedia.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import ru.netology.nmedia.MainActivity
 import ru.netology.nmedia.adapter.PostInteractionListener
 import ru.netology.nmedia.data.Post
 import ru.netology.nmedia.data.impl.InMemoryPostRepository
@@ -16,7 +17,6 @@ class PostViewModel : ViewModel(), PostInteractionListener {
 
     fun onSaveButtonClicked(content: String) {
         if (content.isBlank()) return
-
 
         val post = currentPost.value?.copy(content = content)
             ?: Post(
