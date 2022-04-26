@@ -15,6 +15,15 @@ class PostViewModel : ViewModel(), PostInteractionListener {
 
     val currentPost = MutableLiveData<Post?>(null)
 
+    fun clearCurrentPost(){
+        currentPost.value = Post(
+            id = PostRepository.NEW_POST_ID,
+            author = "Me",
+            content = "",
+            published = "Today"
+        )
+    }
+
     fun onSaveButtonClicked(content: String) {
         if (content.isBlank()) return
 
