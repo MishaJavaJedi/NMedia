@@ -78,11 +78,8 @@ internal class PostsAdapter(
                 authorName.text = post.author
                 postDate.text = post.published
                 text.text = post.content
-                likeButton.text = toStringConverter(post.likes)// Material D likes there
+                likeButton.text = toStringConverter(post.likes)
                 repostButton.text = toStringConverter(post.share)
-                //repostCount.text = toStringConverter(post.share)
-                //likesCount.text = toStringConverter(post.likes)
-
 
                 likeButton.isChecked = post.likedByMe
 
@@ -95,10 +92,6 @@ internal class PostsAdapter(
         private fun toStringConverter(count: Int): String {
             return InMemoryPostRepository().converter(count)
         }
-
-        @DrawableRes
-        private fun getLikeIconResId(liked: Boolean) =
-            if (liked) R.drawable.ic_liked_24dp else R.drawable.ic_like_24dp
     }
 
     private object DiffCallback : DiffUtil.ItemCallback<Post>() {
