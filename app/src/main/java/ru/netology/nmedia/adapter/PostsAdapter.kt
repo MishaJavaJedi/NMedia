@@ -79,7 +79,8 @@ internal class PostsAdapter(
                 postDate.text = post.published
                 text.text = post.content
                 likeButton.text = toStringConverter(post.likes)// Material D likes there
-                repostCount.text = toStringConverter(post.share)
+                repostButton.text = toStringConverter(post.share)
+                //repostCount.text = toStringConverter(post.share)
                 //likesCount.text = toStringConverter(post.likes)
 
 
