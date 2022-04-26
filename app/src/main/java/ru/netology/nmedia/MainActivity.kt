@@ -5,7 +5,6 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import ru.netology.nmedia.adapter.PostsAdapter
-import ru.netology.nmedia.data.Post
 import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.util.hideKeyboard
 import ru.netology.nmedia.viewModel.PostViewModel

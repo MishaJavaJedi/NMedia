@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.R
 import ru.netology.nmedia.data.Post
 import ru.netology.nmedia.data.impl.InMemoryPostRepository
-import ru.netology.nmedia.databinding.ActivityMainBinding
+//import ru.netology.nmedia.databinding.ActivityMainBinding
 //
 import ru.netology.nmedia.databinding.PostBinding
 
@@ -65,11 +65,12 @@ internal class PostsAdapter(
         }
 
 
-//        init {
-//            binding.likeButton.setOnClickListener {
-//                listener.onLikeClicked(post)
-//            }
-//        }
+        init {
+            binding.likeButton.setOnClickListener {
+                listener.onLikeClicked(post)
+            }
+            binding.repostButton.setOnClickListener { interactionListener.onShareClicked(post) }
+        }
 
         fun bind(post: Post) {
             this.post = post
@@ -77,12 +78,12 @@ internal class PostsAdapter(
                 authorName.text = post.author
                 postDate.text = post.published
                 text.text = post.content
+                likeButton.text = toStringConverter(post.likes)// Material D likes there
                 repostCount.text = toStringConverter(post.share)
-                likesCount.text = toStringConverter(post.likes)
+                //likesCount.text = toStringConverter(post.likes)
 
-                repostButton.setOnClickListener { interactionListener.onShareClicked(post) }
-                likeButton.setOnClickListener { interactionListener.onLikeClicked(post) }
-                likeButton.setImageResource(getLikeIconResId(post.likedByMe))
+
+                likeButton.isChecked = post.likedByMe
 
                 options.setOnClickListener {
                     popupMenu.show()
