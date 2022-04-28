@@ -53,9 +53,9 @@
         style="@style/Widget.AppTheme.Options"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:iconGravity="end"
         android:background="@android:color/transparent"
         android:contentDescription="@string/options"
+        app:iconGravity="end"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -132,8 +132,5 @@
         app:layout_constraintBottom_toBottomOf="@id/repostButton"
         app:layout_constraintEnd_toStartOf="@id/viewCountPicture"
         app:layout_constraintTop_toTopOf="@id/likeButton" />
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
