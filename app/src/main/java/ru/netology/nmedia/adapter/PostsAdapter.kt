@@ -80,6 +80,11 @@ import ru.netology.nmedia.databinding.PostBinding
                 likeButton.text = toStringConverter(post.likes)
                 repostButton.text = toStringConverter(post.share)
 
+                playButton.setOnClickListener {
+                    interactionListener.onPlayClicked(post)
+                }
+
+
                 likeButton.isChecked = post.likedByMe
 
                 options.setOnClickListener {

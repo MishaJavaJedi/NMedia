@@ -19,7 +19,8 @@ class InMemoryPostRepository : PostRepository {
                 content = "Lorem $index",
                 published = "10.04.2022",
                 share = 997,
-                likes = 999
+                likes = 999,
+                videoUrl = "https://www.youtube.com/watch?v=WhWc3b3KhnY"
             )
         }
     )

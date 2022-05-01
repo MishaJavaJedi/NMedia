@@ -23,6 +23,14 @@ class PostViewModel : ViewModel(), PostInteractionListener {
     val navigateToPostUpdateScreenEvent = SingleLiveEvent<Unit>()
     val updatePost = MutableLiveData<Post>(null)
 
+    val playVideoScreenEvent = SingleLiveEvent<String>()
+    val videoUrl = MutableLiveData<String>()
+
+    override fun onPlayClicked(post: Post){
+        videoUrl.value = post.videoUrl.toString()
+        playVideoScreenEvent.call()
+    }
+
 
     fun onActivitySaveClicked(post: Post, content: String) {
         val updatedPost = post.copy(content = content)
@@ -37,7 +45,8 @@ class PostViewModel : ViewModel(), PostInteractionListener {
                 id = PostRepository.NEW_POST_ID,
                 author = "Me",
                 content = content,
-                published = "Today"
+                published = "Today",
+                videoUrl = "https://www.youtube.com/watch?v=WhWc3b3KhnY"
             )
         repository.save(post)
         currentPost.value = null
