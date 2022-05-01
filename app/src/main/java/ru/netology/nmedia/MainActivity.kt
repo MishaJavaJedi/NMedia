@@ -2,14 +2,14 @@ package ru.netology.nmedia
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.activity.result.launch
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import ru.netology.nmedia.activity.PostContentActivity
+import ru.netology.nmedia.activity.PostUpdateActivity
 import ru.netology.nmedia.adapter.PostsAdapter
+import ru.netology.nmedia.data.Post
 import ru.netology.nmedia.databinding.ActivityMainBinding
-import ru.netology.nmedia.util.hideKeyboard
 import ru.netology.nmedia.viewModel.PostViewModel
 
 
@@ -31,47 +31,45 @@ class MainActivity : AppCompatActivity() {
             adapter.submitList(posts)
         }
 
-//        binding.closeButton.setOnClickListener {
-//            binding.cancelEditGroup.visibility = View.GONE
-//            binding.content.text.clear()
-//            viewModel.clearCurrentPost()
-//        }
-
         binding.fab.setOnClickListener {
-           viewModel.onAddClicked()
-            }
+            viewModel.onAddClicked()
+        }
 
-
-
-//        viewModel.currentPost.observe(this) { currentPost ->
-//            binding.content.setText(currentPost?.content)
-//            if (binding.content.text.toString() != "") {
-//                binding.cancelEditText.text = currentPost?.content.toString()
-//                binding.cancelEditGroup.visibility = View.VISIBLE
-//            }
-//        }
-
-        viewModel.sharePostContent.observe(this){postContent ->
+        viewModel.sharePostContent.observe(this) { postContent ->
             val intent = Intent().apply {
                 action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_TEXT,postContent)
+                putExtra(Intent.EXTRA_TEXT, postContent)
                 type = "text/plain"
             }
             val shareIntent =
-                Intent.createChooser(intent,getString(R.string.chooser_share_post))
+                Intent.createChooser(intent, getString(R.string.chooser_share_post))
             startActivity(shareIntent)
         }
 
+
         val postContentActivityLauncher =
-        registerForActivityResult(PostContentActivity.ResultContract){
-            postContent ->
-            val temp = postContent
-            postContent?:return@registerForActivityResult
-            viewModel.onSaveButtonClicked(postContent)
+            registerForActivityResult(PostContentActivity.ResultContract) { postContent ->
+                postContent ?: return@registerForActivityResult
+                viewModel.onSaveButtonClicked(postContent)
+            }
+
+        viewModel.navigateToPostContentScreenEvent.observe(this) {
+            postContentActivityLauncher.launch()
         }
 
-        viewModel.navigateToPostContentScreenEvent.observe(this){
-            postContentActivityLauncher.launch()
+        //Update
+        val postUpdateContentActivityLauncher =
+            registerForActivityResult(PostUpdateActivity.ResultContract) { postContent ->
+                postContent ?: return@registerForActivityResult
+                val updatedPost = viewModel.updatePost.value
+
+                if (updatedPost != null) {
+                    viewModel.onActivitySaveClicked(updatedPost, postContent)
+                }
+            }
+
+        viewModel.navigateToPostUpdateScreenEvent.observe(this) {
+            postUpdateContentActivityLauncher.launch()
         }
     }
 }

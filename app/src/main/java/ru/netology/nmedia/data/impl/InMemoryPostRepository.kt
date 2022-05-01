@@ -3,6 +3,7 @@ package ru.netology.nmedia.data.impl
 import androidx.lifecycle.MutableLiveData
 import ru.netology.nmedia.data.Post
 import ru.netology.nmedia.repository.PostRepository
+import java.io.Serializable
 
 class InMemoryPostRepository : PostRepository {
 
@@ -15,7 +16,7 @@ class InMemoryPostRepository : PostRepository {
             Post(
                 id = index + 1L,
                 author = "Netology",
-                content = "Lorem Ipsum $index",
+                content = "Lorem $index",
                 published = "10.04.2022",
                 share = 997,
                 likes = 999

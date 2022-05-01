@@ -1,5 +1,6 @@
 package ru.netology.nmedia.adapter
 
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.PopupMenu
@@ -9,17 +10,17 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.R
 import ru.netology.nmedia.data.Post
 import ru.netology.nmedia.data.impl.InMemoryPostRepository
-
-
 import ru.netology.nmedia.databinding.PostBinding
 
-internal class PostsAdapter(
+
+ class PostsAdapter(
     private val interactionListener: PostInteractionListener
 
 ) : ListAdapter<Post, PostsAdapter.ViewHolder>(DiffCallback) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
 
         val inflater = LayoutInflater.from(parent.context)
         val binding = PostBinding.inflate(inflater, parent, false)
@@ -36,6 +37,7 @@ internal class PostsAdapter(
         listener: PostInteractionListener
     ) : RecyclerView.ViewHolder(binding.root) {
 
+
         private lateinit var post: Post
 
 
@@ -49,7 +51,7 @@ internal class PostsAdapter(
                             true
                         }
                         R.id.edit -> {
-                            listener.onEditClicked(post)
+                             listener.onEditClicked(post)
                             true
                         }
                         else -> false
@@ -57,6 +59,9 @@ internal class PostsAdapter(
                 }
             }
         }
+
+
+
 
 
         init {

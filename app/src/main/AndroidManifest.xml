@@ -9,6 +9,7 @@
         android:roundIcon="@drawable/post_avatar_drawable"
         android:supportsRtl="true"
         android:theme="@style/Theme.NMedia">
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -18,10 +19,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activity.PostContentActivity"
-            android:exported="false"/>
+            android:exported="false" />
+        <activity
+            android:name=".activity.PostUpdateActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"

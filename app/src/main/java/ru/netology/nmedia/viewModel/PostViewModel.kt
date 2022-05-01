@@ -1,7 +1,9 @@
 package ru.netology.nmedia.viewModel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.map
 import ru.netology.nmedia.MainActivity
 import ru.netology.nmedia.adapter.PostInteractionListener
 import ru.netology.nmedia.data.Post
@@ -18,13 +20,13 @@ class PostViewModel : ViewModel(), PostInteractionListener {
     val navigateToPostContentScreenEvent = SingleLiveEvent<Unit>()
     val sharePostContent = SingleLiveEvent<String>()
 
-    fun clearCurrentPost(){
-        currentPost.value = Post(
-            id = PostRepository.NEW_POST_ID,
-            author = "Me",
-            content = "",
-            published = "Today"
-        )
+    val navigateToPostUpdateScreenEvent = SingleLiveEvent<Unit>()
+    val updatePost = MutableLiveData<Post>(null)
+
+
+    fun onActivitySaveClicked(post: Post, content: String) {
+        val updatedPost = post.copy(content = content)
+        repository.save(updatedPost)
     }
 
     fun onSaveButtonClicked(content: String) {
@@ -51,11 +53,11 @@ class PostViewModel : ViewModel(), PostInteractionListener {
     override fun onRemoveClicked(post: Post) = repository.delete(post.id)
 
     override fun onEditClicked(post: Post) {
-        currentPost.value = post
+        updatePost.value = post
+        navigateToPostUpdateScreenEvent.call()
     }
 
     fun onAddClicked() {
-       navigateToPostContentScreenEvent.call()
+        navigateToPostContentScreenEvent.call()
     }
-
 }
