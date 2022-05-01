@@ -58,7 +58,7 @@ class InMemoryPostRepository : PostRepository {
     }
 
     private companion object {
-        const val GENERATED_POSTS_AMOUNT = 10
+        const val GENERATED_POSTS_AMOUNT = 1
     }
 
     fun converter(count: Int): String {

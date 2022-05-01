@@ -94,19 +94,28 @@
         android:layout_marginTop="12dp"
         android:ellipsize="end"
         android:text="@string/loremIpsum"
-        app:layout_constraintBottom_toTopOf="@id/URL"
-        app:layout_constraintEnd_toEndOf="@id/URL"
-        app:layout_constraintStart_toStartOf="@id/URL"
-        app:layout_constraintTop_toBottomOf="@id/headerBarrier" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/avatar" />
+
     <ImageButton
         android:id="@+id/play_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_play_24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/likeButton"
         android:backgroundTint="@android:color/transparent"
-        />
+        android:src="@drawable/ic_banner_foreground"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
+        android:clickable="false"
+        android:backgroundTint="@android:color/transparent"
+        android:src="@drawable/ic_play_24dp"
+        app:layout_constraintEnd_toEndOf="@+id/play_button"
+        app:layout_constraintStart_toStartOf="@+id/play_button"
+        app:layout_constraintTop_toTopOf="@id/play_button" />
 
     <TextView
         android:id="@+id/URL"
@@ -116,9 +125,9 @@
         android:singleLine="true"
         android:text="@string/URL"
         android:textColor="#2289F8"
-        app:layout_constraintEnd_toEndOf="@id/text"
+
         app:layout_constraintStart_toStartOf="@id/text"
-        app:layout_constraintTop_toBottomOf="@id/text" />
+        app:layout_constraintTop_toBottomOf="@id/play_button" />
 
     <ImageView
         android:id="@+id/viewCountPicture"

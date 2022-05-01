@@ -59,33 +59,11 @@ class MainActivity : AppCompatActivity() {
 
 
         //Play
-
-
         viewModel.playVideoScreenEvent.observe(this) { videoUrl ->
             val url = viewModel.videoUrl.value
-            val urlParce = Uri.parse("https://www.youtube.com/watch?v=WhWc3b3KhnY")
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
             startActivity(intent)
-
-//                .apply {
-//                action = Intent.ACTION_VIEW
-//                putExtra(Intent.EXTRA_TEXT, url)
-//                intent.setDataAndType(urlParce, "video/mp4")
-
-
-//                (Intent.ACTION_VIEW,
-//                Uri.parse("http://www.youtube.com/watch?v=" + key))
-            //type = "video/mp4"
         }
-        //startActivity(intent)
-//            val shareIntent =
-//                Intent.createChooser(intent, getString(R.string.chooser_share_post))
-//            startActivity(shareIntent)
-
-//            val intent = Intent()
-//            intent.action = Intent.ACTION_VIEW
-//            intent.setDataAndType(Uri.parse("http://www.yourvideo.mp4"), "video/mp4")
-
 
         //Update
         val postUpdateContentActivityLauncher =

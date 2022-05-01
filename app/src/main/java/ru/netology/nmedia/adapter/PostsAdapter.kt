@@ -13,15 +13,12 @@ import ru.netology.nmedia.data.impl.InMemoryPostRepository
 import ru.netology.nmedia.databinding.PostBinding
 
 
- class PostsAdapter(
+class PostsAdapter(
     private val interactionListener: PostInteractionListener
 
 ) : ListAdapter<Post, PostsAdapter.ViewHolder>(DiffCallback) {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
-
         val inflater = LayoutInflater.from(parent.context)
         val binding = PostBinding.inflate(inflater, parent, false)
 
@@ -40,7 +37,6 @@ import ru.netology.nmedia.databinding.PostBinding
 
         private lateinit var post: Post
 
-
         private val popupMenu by lazy {
             PopupMenu(itemView.context, binding.options).apply {
                 inflate(R.menu.options_post)
@@ -51,7 +47,7 @@ import ru.netology.nmedia.databinding.PostBinding
                             true
                         }
                         R.id.edit -> {
-                             listener.onEditClicked(post)
+                            listener.onEditClicked(post)
                             true
                         }
                         else -> false
@@ -59,10 +55,6 @@ import ru.netology.nmedia.databinding.PostBinding
                 }
             }
         }
-
-
-
-
 
         init {
             binding.likeButton.setOnClickListener {
