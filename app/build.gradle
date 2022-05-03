@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.plugin.serialization' version("1.5.30")
 }
 
 android {
@@ -37,7 +38,7 @@ android {
 dependencies {
     implementation 'androidx.databinding:databinding-runtime:4.2.2'
 
-
+    def gson_version = "2.9.0"
     def lifecycle_version = "2.4.1"
     def activity_version = "1.4.0"
 
@@ -57,5 +58,8 @@ dependencies {
 
     //Material Design
     "com.google.android.material:material:1.3.0"
+
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2"
+    implementation "com.google.code.gson:gson:$gson_version"
 
 }
