@@ -76,7 +76,6 @@ class PostsAdapter(
                     interactionListener.onPlayClicked(post)
                 }
 
-
                 likeButton.isChecked = post.likedByMe
 
                 options.setOnClickListener {
