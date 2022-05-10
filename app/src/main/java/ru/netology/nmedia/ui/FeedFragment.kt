@@ -1,39 +1,29 @@
-package ru.netology.nmedia
+package ru.netology.nmedia.ui
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import androidx.activity.result.launch
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import ru.netology.nmedia.activity.PostContentActivity
-import ru.netology.nmedia.activity.PostUpdateActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
+import androidx.fragment.app.setFragmentResultListener
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import ru.netology.nmedia.R
 import ru.netology.nmedia.adapter.PostsAdapter
-import ru.netology.nmedia.databinding.ActivityMainBinding
+import ru.netology.nmedia.databinding.FeedFragmentBinding
 import ru.netology.nmedia.viewModel.PostViewModel
 
 
-class MainActivity : AppCompatActivity() {
+class FeedFragment : Fragment() {
 
     private val viewModel by viewModels<PostViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        val adapter = PostsAdapter(viewModel)
-
-
-        binding.list.adapter = adapter
-        viewModel.data.observe(this) { posts ->
-            adapter.submitList(posts)
-        }
-
-        binding.fab.setOnClickListener {
-            viewModel.onAddClicked()
-        }
 
         viewModel.sharePostContent.observe(this) { postContent ->
             val intent = Intent().apply {
@@ -46,15 +36,17 @@ class MainActivity : AppCompatActivity() {
             startActivity(shareIntent)
         }
 
+//create
+        setFragmentResultListener(requestKey = PostContentFragment.REQUEST_KEY) { requestKey, bundle ->
+            if (requestKey != PostContentFragment.REQUEST_KEY) return@setFragmentResultListener
+            val newPostContent =
+                bundle.getString(PostContentFragment.RESULT_KEY) ?: return@setFragmentResultListener
+            viewModel.onSaveButtonClicked(newPostContent)
+        }
 
-        val postContentActivityLauncher =
-            registerForActivityResult(PostContentActivity.ResultContract) { postContent ->
-                postContent ?: return@registerForActivityResult
-                viewModel.onSaveButtonClicked(postContent)
-            }
-
-        viewModel.navigateToPostContentScreenEvent.observe(this) {
-            postContentActivityLauncher.launch()
+        viewModel.navigateToPostContentScreenEvent.observe(this) {initialContent ->
+            val direction = FeedFragmentDirections.toPostContentFragment(initialContent)
+            findNavController().navigate(direction)
         }
 
 
@@ -80,6 +72,24 @@ class MainActivity : AppCompatActivity() {
             postUpdateContentActivityLauncher.launch()
         }
     }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ) = FeedFragmentBinding.inflate(layoutInflater, container, false).also { binding ->
+        val adapter = PostsAdapter(viewModel)
+
+
+        binding.list.adapter = adapter
+        viewModel.data.observe(viewLifecycleOwner) { posts ->
+            adapter.submitList(posts)
+        }
+
+        binding.fab.setOnClickListener {
+            viewModel.onAddClicked()
+        }
+    }.root
 }
 
 

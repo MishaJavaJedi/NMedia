@@ -11,7 +11,7 @@
         android:theme="@style/Theme.NMedia">
 
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.AppActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,11 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".activity.PostContentActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.PostUpdateActivity"
+            android:name=".ui.PostUpdateActivity"
             android:exported="false" />
 
         <meta-data

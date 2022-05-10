@@ -18,7 +18,7 @@ class PostViewModel(application: Application) : AndroidViewModel(application), P
     val data by repository::data
 
     private val currentPost = MutableLiveData<Post?>(null)
-    val navigateToPostContentScreenEvent = SingleLiveEvent<Unit>()
+    val navigateToPostContentScreenEvent = SingleLiveEvent<String>()
     val sharePostContent = SingleLiveEvent<String>()
 
     val navigateToPostUpdateScreenEvent = SingleLiveEvent<Unit>()
@@ -64,7 +64,9 @@ class PostViewModel(application: Application) : AndroidViewModel(application), P
 
     override fun onEditClicked(post: Post) {
         updatePost.value = post
-        navigateToPostUpdateScreenEvent.call()
+        navigateToPostContentScreenEvent.value = post.content
+    // внизу рабочая версия с вызовом специального окна для изменения(не для создания)
+        //navigateToPostUpdateScreenEvent.call()
     }
 
     fun onAddClicked() {
