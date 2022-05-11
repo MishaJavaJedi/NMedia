@@ -1,41 +1,44 @@
 package ru.netology.nmedia.ui
 
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResult
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import ru.netology.nmedia.data.Post
 import ru.netology.nmedia.databinding.PostShowFragmentBinding
 
 
 class PostShowFragment : Fragment() {
 
-    private val args by navArgs<PostUpdateFragmentArgs>() //TODO
+    private val args by navArgs<PostShowFragmentArgs>() 
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ) = PostShowFragmentBinding.inflate(layoutInflater, container, false).also { binding ->
-        val postInfo = "This is initialized post with it actual content " + args.initialContent
-        binding.tempText.text =  postInfo
+        val tempPost: Post = args.initialContent!!
 
-//        binding.ok.setOnClickListener {
-//            onOkButtonClicked(binding)
-//        }
+        render(binding, tempPost)
+
+        Toast.makeText(activity, "You are on Post's Fragment!", Toast.LENGTH_LONG).show();
     }.root
 
-    private fun onOkButtonClicked(binding: PostShowFragmentBinding) {
-//        val text = binding.edit.text
-//        if (!text.isNullOrBlank()) {
-//            val resultBundle = Bundle(1)
-//            resultBundle.putString(RESULT_KEY, text.toString())
-//            setFragmentResult(REQUEST_KEY, resultBundle)
-//        }
-        findNavController().popBackStack()
+    private fun render(binding: PostShowFragmentBinding, tempPost: Post) {
+        binding.run {
+            tempAuthorName.text = tempPost.author
+            tempPostDate.text = tempPost.published
+            tempText.text = tempPost.content
+            tempLikeButton.isChecked = tempPost.likedByMe
+            tempURL.text = tempPost.videoUrl
+            tempLikeButton.text = tempPost.likes.toString()
+            tempRepostButton.text = tempPost.share.toString()
+
+            tempLikeButton.isClickable = false
+            tempRepostButton.isClickable = false
+        }
     }
 
     companion object {

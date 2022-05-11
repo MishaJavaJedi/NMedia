@@ -36,7 +36,7 @@ class FeedFragment : Fragment() {
             startActivity(shareIntent)
         }
 
-        //show
+//show
         setFragmentResultListener(requestKey = PostShowFragment.REQUEST_KEY) { requestKey, bundle ->
             if (requestKey != PostShowFragment.REQUEST_KEY) return@setFragmentResultListener
             val newPostContent =
@@ -44,10 +44,9 @@ class FeedFragment : Fragment() {
             viewModel.onSaveButtonClicked(newPostContent)
         }
         viewModel.navigateToShowPost.observe(this) { initialContent ->
-            val direction = FeedFragmentDirections.toPostShowFragment(initialContent.toString())
+            val direction = FeedFragmentDirections.toPostShowFragment(initialContent)
             findNavController().navigate(direction)
         }
-
 
 //create
         setFragmentResultListener(requestKey = PostContentFragment.REQUEST_KEY) { requestKey, bundle ->

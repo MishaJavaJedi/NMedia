@@ -42,7 +42,7 @@
         android:name="ru.netology.nmedia.ui.PostShowFragment">
     <argument
         android:name="initialContent"
-        app:argType="string"
+        app:argType="ru.netology.nmedia.data.Post"
         app:nullable="true" />
        </fragment>
 
