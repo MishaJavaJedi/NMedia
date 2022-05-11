@@ -43,34 +43,33 @@ class FeedFragment : Fragment() {
                 bundle.getString(PostContentFragment.RESULT_KEY) ?: return@setFragmentResultListener
             viewModel.onSaveButtonClicked(newPostContent)
         }
-
-        viewModel.navigateToPostContentScreenEvent.observe(this) {initialContent ->
+        viewModel.navigateToPostContentScreenEvent.observe(this) { initialContent ->
             val direction = FeedFragmentDirections.toPostContentFragment(initialContent)
             findNavController().navigate(direction)
         }
 
+//Update
+        setFragmentResultListener(requestKey = PostUpdateFragment.REQUEST_KEY) { requestKey, bundle ->
+            if (requestKey != PostUpdateFragment.REQUEST_KEY) return@setFragmentResultListener
+            val updatePostContent =
+                bundle.getString(PostUpdateFragment.RESULT_KEY) ?: return@setFragmentResultListener
+            val updatedPost = viewModel.updatePost.value
+            if (updatedPost != null) {
+                viewModel.onActivitySaveClicked(updatedPost, updatePostContent)
+            }
+        }
+        viewModel.navigateToPostUpdateScreenEvent.observe(this) { initialContent ->
+            val direction = FeedFragmentDirections.toPostUpdateFragment(initialContent)
+            findNavController().navigate(direction)
+        }
 
-        //Play
+//Play
         viewModel.playVideoScreenEvent.observe(this) { videoUrl ->
             val url = viewModel.videoUrl.value
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
             startActivity(intent)
         }
 
-        //Update
-        val postUpdateContentActivityLauncher =
-            registerForActivityResult(PostUpdateActivity.ResultContract) { postContent ->
-                postContent ?: return@registerForActivityResult
-                val updatedPost = viewModel.updatePost.value
-
-                if (updatedPost != null) {
-                    viewModel.onActivitySaveClicked(updatedPost, postContent)
-                }
-            }
-
-        viewModel.navigateToPostUpdateScreenEvent.observe(this) {
-            postUpdateContentActivityLauncher.launch()
-        }
     }
 
     override fun onCreateView(
@@ -91,6 +90,7 @@ class FeedFragment : Fragment() {
         }
     }.root
 }
+
 
 
 

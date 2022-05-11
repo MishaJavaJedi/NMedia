@@ -12,7 +12,8 @@ import ru.netology.nmedia.data.impl.SharedPrefsPostRepository
 import ru.netology.nmedia.repository.PostRepository
 import ru.netology.nmedia.util.SingleLiveEvent
 
-class PostViewModel(application: Application) : AndroidViewModel(application), PostInteractionListener {
+class PostViewModel(application: Application) : AndroidViewModel(application),
+    PostInteractionListener {
     private val repository: PostRepository = FilePostRepository(application)
 
     val data by repository::data
@@ -21,13 +22,13 @@ class PostViewModel(application: Application) : AndroidViewModel(application), P
     val navigateToPostContentScreenEvent = SingleLiveEvent<String>()
     val sharePostContent = SingleLiveEvent<String>()
 
-    val navigateToPostUpdateScreenEvent = SingleLiveEvent<Unit>()
+    val navigateToPostUpdateScreenEvent = SingleLiveEvent<String?>()
     val updatePost = MutableLiveData<Post>(null)
 
     val playVideoScreenEvent = SingleLiveEvent<String>()
     val videoUrl = MutableLiveData<String>()
 
-    override fun onPlayClicked(post: Post){
+    override fun onPlayClicked(post: Post) {
         videoUrl.value = post.videoUrl.toString()
         playVideoScreenEvent.call()
     }
@@ -64,9 +65,7 @@ class PostViewModel(application: Application) : AndroidViewModel(application), P
 
     override fun onEditClicked(post: Post) {
         updatePost.value = post
-        navigateToPostContentScreenEvent.value = post.content
-    // внизу рабочая версия с вызовом специального окна для изменения(не для создания)
-        //navigateToPostUpdateScreenEvent.call()
+        navigateToPostUpdateScreenEvent.value = post.content
     }
 
     fun onAddClicked() {
