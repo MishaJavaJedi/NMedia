@@ -12,7 +12,7 @@ import ru.netology.nmedia.databinding.PostUpdateFragmentBinding
 
 class PostUpdateFragment : Fragment() {
 
-    private val args by navArgs<PostContentFragmentArgs>()
+    private val args by navArgs<PostUpdateFragmentArgs>() //update?
 
     override fun onCreateView(
         inflater: LayoutInflater,

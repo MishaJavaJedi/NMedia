@@ -28,11 +28,16 @@ class PostViewModel(application: Application) : AndroidViewModel(application),
     val playVideoScreenEvent = SingleLiveEvent<String>()
     val videoUrl = MutableLiveData<String>()
 
+    val navigateToShowPost = SingleLiveEvent<String?>()
+
     override fun onPlayClicked(post: Post) {
         videoUrl.value = post.videoUrl.toString()
         playVideoScreenEvent.call()
     }
 
+    override fun onShowPostClicked(post: Post) {
+        navigateToShowPost.value = post.content
+    }
 
     fun onActivitySaveClicked(post: Post, content: String) {
         val updatedPost = post.copy(content = content)

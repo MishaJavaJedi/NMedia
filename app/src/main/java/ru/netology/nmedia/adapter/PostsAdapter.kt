@@ -57,9 +57,9 @@ class PostsAdapter(
         }
 
         init {
-            binding.likeButton.setOnClickListener {
-                listener.onLikeClicked(post)
-            }
+            binding.likeButton.setOnClickListener { listener.onLikeClicked(post) }
+           // binding.showPostButton.setOnClickListener { interactionListener.onShowPostClicked(post) }
+            binding.text.setOnClickListener { interactionListener.onShowPostClicked(post) }
             binding.repostButton.setOnClickListener { interactionListener.onShareClicked(post) }
         }
 

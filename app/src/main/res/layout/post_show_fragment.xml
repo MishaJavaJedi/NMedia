@@ -7,18 +7,8 @@
     android:background="@android:color/white"
     android:padding="16dp">
 
-<!--    <Button-->
-<!--        android:id="@+id/showPostButton"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        style="?android:attr/borderlessButtonStyle"-->
-<!--        android:backgroundTint="@android:color/transparent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/avatar"-->
-<!--        app:layout_constraintBottom_toTopOf="@id/play_button"-->
-<!--        />-->
-
     <ImageView
-        android:id="@+id/avatar"
+        android:id="@+id/temp_avatar"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:contentDescription="@string/avatar_description"
@@ -27,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/authorName"
+        android:id="@+id/temp_authorName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -37,14 +27,14 @@
         android:singleLine="true"
         android:text="@string/postAuthor"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@id/postDate"
-        app:layout_constraintEnd_toStartOf="@id/options"
-        app:layout_constraintStart_toEndOf="@id/avatar"
-        app:layout_constraintTop_toTopOf="@id/avatar"
+        app:layout_constraintBottom_toTopOf="@id/temp_postDate"
+        app:layout_constraintEnd_toStartOf="@id/temp_options"
+        app:layout_constraintStart_toEndOf="@id/temp_avatar"
+        app:layout_constraintTop_toTopOf="@id/temp_avatar"
         app:layout_constraintVertical_chainStyle="spread" />
 
     <TextView
-        android:id="@+id/postDate"
+        android:id="@+id/temp_postDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ellipsize="end"
@@ -53,13 +43,13 @@
         android:text="@string/date"
         android:textColor="@color/background"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@id/avatar"
-        app:layout_constraintEnd_toEndOf="@id/authorName"
-        app:layout_constraintStart_toStartOf="@id/authorName"
-        app:layout_constraintTop_toBottomOf="@id/authorName" />
+        app:layout_constraintBottom_toBottomOf="@id/temp_avatar"
+        app:layout_constraintEnd_toEndOf="@id/temp_authorName"
+        app:layout_constraintStart_toStartOf="@id/temp_authorName"
+        app:layout_constraintTop_toBottomOf="@id/temp_authorName" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/options"
+        android:id="@+id/temp_options"
         style="@style/Widget.AppTheme.Options"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -74,49 +64,47 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="avatar,postDate,options" />
+        app:constraint_referenced_ids="temp_avatar,temp_postDate,temp_options" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/likeButton"
+        android:id="@+id/temp_likeButton"
         style="@style/Widget.AppTheme.LikeCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:checkable="true"
         app:icon="@drawable/ic_like_24_md"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/URL"
+        app:layout_constraintTop_toBottomOf="@id/temp_URL"
         tools:text="1000" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/repostButton"
+        android:id="@+id/temp_repostButton"
         style="@style/Widget.AppTheme.ShareCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:checkable="false"
-        app:layout_constraintStart_toEndOf="@id/likeButton"
-        app:layout_constraintTop_toBottomOf="@id/URL"
+        app:layout_constraintStart_toEndOf="@id/temp_likeButton"
+        app:layout_constraintTop_toBottomOf="@id/temp_URL"
         tools:text="1000" />
 
     <TextView
-        android:id="@+id/text"
-        android:clickable="true"
+        android:id="@+id/temp_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:ellipsize="end"
         android:text="@string/loremIpsum"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/avatar"
-        android:focusable="true" />
+        app:layout_constraintTop_toBottomOf="@id/temp_avatar" />
 
     <ImageButton
-        android:id="@+id/play_button"
+        android:id="@+id/temp_play_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@android:color/transparent"
         android:src="@drawable/ic_banner_foreground"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text" />
+        app:layout_constraintTop_toBottomOf="@id/temp_text" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -125,12 +113,12 @@
         android:clickable="false"
         android:backgroundTint="@android:color/transparent"
         android:src="@drawable/ic_play_24dp"
-        app:layout_constraintEnd_toEndOf="@+id/play_button"
-        app:layout_constraintStart_toStartOf="@+id/play_button"
-        app:layout_constraintTop_toTopOf="@id/play_button" />
+        app:layout_constraintEnd_toEndOf="@+id/temp_play_button"
+        app:layout_constraintStart_toStartOf="@+id/temp_play_button"
+        app:layout_constraintTop_toTopOf="@id/temp_play_button" />
 
     <TextView
-        android:id="@+id/URL"
+        android:id="@+id/temp_URL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ellipsize="end"
@@ -138,19 +126,19 @@
         android:text="@string/URL"
         android:textColor="#2289F8"
 
-        app:layout_constraintStart_toStartOf="@id/text"
-        app:layout_constraintTop_toBottomOf="@id/play_button" />
+        app:layout_constraintStart_toStartOf="@id/temp_text"
+        app:layout_constraintTop_toBottomOf="@id/temp_play_button" />
 
     <ImageView
-        android:id="@+id/viewCountPicture"
+        android:id="@+id/temp_viewCountPicture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:contentDescription="@string/viewcountpicture"
         android:src="@drawable/ic_views_24dp"
-        app:layout_constraintBottom_toBottomOf="@id/repostButton"
+        app:layout_constraintBottom_toBottomOf="@id/temp_repostButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/repostButton" />
+        app:layout_constraintTop_toTopOf="@id/temp_repostButton" />
 
     <TextView
         android:id="@+id/viewCount"
@@ -159,8 +147,8 @@
         android:layout_marginEnd="12dp"
         android:text="1"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@id/repostButton"
-        app:layout_constraintEnd_toStartOf="@id/viewCountPicture"
-        app:layout_constraintTop_toTopOf="@id/likeButton" />
+        app:layout_constraintBottom_toBottomOf="@id/temp_repostButton"
+        app:layout_constraintEnd_toStartOf="@id/temp_viewCountPicture"
+        app:layout_constraintTop_toTopOf="@id/temp_likeButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
