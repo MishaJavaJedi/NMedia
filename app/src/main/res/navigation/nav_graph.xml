@@ -13,7 +13,7 @@
             app:destination="@id/postContentFragment" />
         <action
             android:id="@+id/toPostUpdateFragment"
-            app:destination="@id/postShowFragment" />
+            app:destination="@id/postUpdateFragment" />
         <action
             android:id="@+id/toPostShowFragment"
             app:destination="@id/postShowFragment" />
