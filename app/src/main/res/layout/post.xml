@@ -7,16 +7,6 @@
     android:background="@android:color/white"
     android:padding="16dp">
 
-<!--    <Button-->
-<!--        android:id="@+id/showPostButton"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        style="?android:attr/borderlessButtonStyle"-->
-<!--        android:backgroundTint="@android:color/transparent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/avatar"-->
-<!--        app:layout_constraintBottom_toTopOf="@id/play_button"-->
-<!--        />-->
-
     <ImageView
         android:id="@+id/avatar"
         android:layout_width="48dp"
