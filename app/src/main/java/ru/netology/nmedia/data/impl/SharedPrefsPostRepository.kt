@@ -22,6 +22,8 @@ class SharedPrefsPostRepository(
         _,_, newValue -> prefs.edit{putLong(NEXT_ID_PREFS_KEY,newValue)}
     }
 
+    override val data: MutableLiveData<List<Post>>
+
     private var posts
         get() = checkNotNull(data.value) { "Data value should not be null" }
         set(value) {
@@ -31,8 +33,6 @@ class SharedPrefsPostRepository(
             }
             data.value = value
         }
-
-    override val data: MutableLiveData<List<Post>>
 
     init {
         val serializedPosts = prefs.getString(POSTS_PREFS_KEY, null)
