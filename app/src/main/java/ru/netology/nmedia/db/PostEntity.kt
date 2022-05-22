@@ -20,4 +20,8 @@ class PostEntity (
     val likedByMe: Boolean,
     @ColumnInfo(name = "likes")
     val likes: Int = 0,
+    @ColumnInfo(name = "share")
+    val share: Int = 0,
+    @ColumnInfo(name = "videoUrl")
+    val videoUrl:String = "https://www.youtube.com/watch?v=WhWc3b3KhnY",
 )

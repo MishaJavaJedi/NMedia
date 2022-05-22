@@ -17,9 +17,8 @@ interface PostDao {
     @Query("UPDATE posts SET content = :content WHERE id = :id")
     fun updateContentById(id: Long, content: String)
 
-    fun share(id: Long, )
-
-
+    @Query("UPDATE posts SET share = share + 1 WHERE id = :id")
+    fun share(id: Long)
 
     @Query("""
         UPDATE posts SET

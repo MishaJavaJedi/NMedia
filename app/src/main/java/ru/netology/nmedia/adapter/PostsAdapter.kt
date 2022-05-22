@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.R
 import ru.netology.nmedia.data.Post
-import ru.netology.nmedia.data.impl.InMemoryPostRepository
+import ru.netology.nmedia.data.impl.PostRepositoryImpl
 import ru.netology.nmedia.databinding.PostBinding
 
 
@@ -58,7 +58,6 @@ class PostsAdapter(
 
         init {
             binding.likeButton.setOnClickListener { listener.onLikeClicked(post) }
-           // binding.showPostButton.setOnClickListener { interactionListener.onShowPostClicked(post) }
             binding.text.setOnClickListener { interactionListener.onShowPostClicked(post) }
             binding.repostButton.setOnClickListener { interactionListener.onShareClicked(post) }
         }
@@ -85,7 +84,7 @@ class PostsAdapter(
         }
 
         private fun toStringConverter(count: Int): String {
-            return InMemoryPostRepository().converter(count)
+            return PostRepositoryImpl.converter(count)
         }
     }
 

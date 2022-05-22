@@ -14,7 +14,7 @@ data class Post(
     val published: String,
     var share: Int = 0,
     var videoUrl: String? = "",
-    var likes: Int = 0,
+    var likes: Int = 999,
     val likedByMe: Boolean = false
 ) : Parcelable
 
