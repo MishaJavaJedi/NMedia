@@ -11,4 +11,11 @@
     <string name="options">Опции</string>
     <string name="likebutton">Кнопка Лайка</string>
     <string name="viewcountpicture">Количество Просмотров</string>
+    <string name="remove">Удалить</string>
+    <string name="enter_text">Введите текст...</string>
+    <string name="menu_edit">Изменить</string>
+    <string name="edit_message">Изменить сообщение</string>
+    <string name="chooser_share_post">Поделиться</string>
+    <string name="description_post_save">Сохранить</string>
+    <string name="add_post">Добавить пост</string>
 </resources>

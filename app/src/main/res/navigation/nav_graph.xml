@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/feedFragment">
+
+    <fragment
+        android:id="@+id/feedFragment"
+        android:name="ru.netology.nmedia.ui.FeedFragment">
+        <action
+            android:id="@+id/toPostContentFragment"
+            app:destination="@id/postContentFragment" />
+        <action
+            android:id="@+id/toPostUpdateFragment"
+            app:destination="@id/postUpdateFragment" />
+        <action
+            android:id="@+id/toPostShowFragment"
+            app:destination="@id/postShowFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/postContentFragment"
+        android:name="ru.netology.nmedia.ui.PostContentFragment">
+        <argument
+            android:name="initialContent"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/postUpdateFragment"
+        android:name="ru.netology.nmedia.ui.PostUpdateFragment">
+    <argument
+        android:name="initialContent"
+        app:argType="string"
+        app:nullable="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/postShowFragment"
+        android:name="ru.netology.nmedia.ui.PostShowFragment">
+    <argument
+        android:name="initialContent"
+        app:argType="ru.netology.nmedia.data.Post"
+        app:nullable="true" />
+       </fragment>
+
+</navigation>

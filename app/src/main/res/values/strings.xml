@@ -10,4 +10,11 @@
     <string name="options">options</string>
     <string name="likebutton">likeButton</string>
     <string name="viewcountpicture">viewCountPicture</string>
+    <string name="remove">Remove</string>
+    <string name="enter_text">Enter text...</string>
+    <string name="menu_edit">Edit</string>
+    <string name="edit_message">Edit Message</string>
+    <string name="chooser_share_post">Share post</string>
+    <string name="description_post_save">Save</string>
+    <string name="add_post">Add Post</string>
 </resources>
